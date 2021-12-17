@@ -28,8 +28,12 @@ public final class SudokuImmutableData {
 		this.data = ArrayUtils.clone(data);
 	}
 	
-	public byte getValue(int x, int y) {
-		return data[x][y];
+	public byte getValue(int row, int column) {
+		return data[row][column];
+	}
+
+	public boolean isEmpty(int row, int column) {
+		return getValue(row, column) == 0;
 	}
 
 	public int getRowCount() {

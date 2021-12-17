@@ -15,10 +15,17 @@ Java 14
 
 # Instruction
 
-To run, execute validate.bat providing file address as parameter. Examples:
+## Build
 
-validate.bat src\test\resources\valid.txt
-validate.bat src\test\resources\validEmpty.txt
+mvn clean package
+
+## Run
+
+Execute validate.bat providing file address as parameter. Examples:
+
+validate.bat src\test\resources\puzzle.txt
+validate.bat src\test\resources\puzzleEmpty.txt
+validate.bat src\test\resources\resolved.txt
 validate.bat src\test\resources\sevenRows.txt
 
 File should be in the following format:
@@ -48,9 +55,10 @@ P05 - Unwnown error.
 L01 - Invalid row, having repeated number. Row X, repeated number Y.
 L02 - Invalid column, having repeated number. Column X, repeated number Y.
 L03 - Invalid box, having repeated number. Box X,Y, repeated number X.
+L04 - Not finished.
 
 # To do
 
-- To reject unsolvable sudokus.
+- To reject unsolvable sudokus (ones having mistake), validating if it is a correct puzzle.
 - Replace tabs with spaces / format everything with agreed format.
 - To test complexity.

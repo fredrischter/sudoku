@@ -35,7 +35,7 @@ public class SudokuFileRepositoryTest {
     	SudokuImmutableData staticDataEmpty = sudokuDataFactory.empty();
     	
     	// When
-    	SudokuImmutableData fromFile = sudokuFileRepository.loadFromResourceFile("valid.txt");
+    	SudokuImmutableData fromFile = sudokuFileRepository.loadFromResourceFile("puzzle.txt");
 
     	// Then
     	assertEquals(staticData, fromFile);

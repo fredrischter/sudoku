@@ -12,6 +12,7 @@ public class SudokuValidationService {
 		collectRowErrors(sudokuData, result);
 		collectColumnErrors(sudokuData, result);
 		collectBoxErrors(sudokuData, result);
+		collectFinished(sudokuData, result);
 		return result;
 	}
 
@@ -82,6 +83,20 @@ public class SudokuValidationService {
 
 	private boolean[] newNumberTable() {
 		return new boolean[SudokuImmutableData.HIGHEST_NUMBER + 1];
+	}
+
+	private void collectFinished(SudokuImmutableData sudokuData, Result result) {
+		boolean finished = !IntStream
+			.range(0, SudokuImmutableData.ROWS_AND_COLUMNS_EXPECTED_COUNT)
+			.anyMatch(column -> {
+				return IntStream
+					.range(0, SudokuImmutableData.ROWS_AND_COLUMNS_EXPECTED_COUNT)
+					.anyMatch(row -> sudokuData.isEmpty(row, column));
+			});
+		
+		if (!finished) {
+			result.add("L04 - Not finished.");
+		}
 	}
 
 }
