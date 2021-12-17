@@ -30,7 +30,7 @@ validate.bat src\test\resources\sevenRows.txt
 
 File should be in the following format:
 
-9, ,4, ,6, ,7, ,1
+```9, ,4, ,6, ,7, ,1
  ,2, ,4, ,3, ,8, 
 8, , , , , , , ,4
  , ,1,8,4,9,6, , 
@@ -39,6 +39,7 @@ File should be in the following format:
 4, , , , , , , ,7
  ,8, ,6, ,4, ,5, 
 5, ,6, ,8, ,2, ,3
+```
 
 # Errors
 
