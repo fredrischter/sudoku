@@ -5,12 +5,12 @@ import static org.junit.Assert.assertNotSame;
 
 import org.junit.Test;
 
-import com.test.sudoku.model.SudokuData;
+import com.test.sudoku.model.SudokuImmutableData;
 import com.test.sudoku.model.SudokuDataFactory;
 import com.test.sudoku.model.exception.SudokuException;
 import com.test.sudoku.model.exception.SudokuFileNotFoundException;
-import com.test.sudoku.model.exception.SudokuNotEnoughColumnsException;
-import com.test.sudoku.model.exception.SudokuNotEnoughRowsException;
+import com.test.sudoku.model.exception.SudokuNotExpectedColumnCountException;
+import com.test.sudoku.model.exception.SudokuNotExpectedRowCountException;
 
 public class SudokuFileRepositoryTest {
 	
@@ -21,7 +21,7 @@ public class SudokuFileRepositoryTest {
     {
     	// Given
     	SudokuDataFactory sudokuDataFactory = new SudokuDataFactory();
-    	SudokuData staticData = sudokuDataFactory.fromString(
+    	SudokuImmutableData staticData = sudokuDataFactory.fromString(
     			"9, ,4, ,6, ,7, ,1\r\n"
     			+ " ,2, ,4, ,3, ,8, \r\n"
     			+ "8, , , , , , , ,4\r\n"
@@ -32,10 +32,10 @@ public class SudokuFileRepositoryTest {
     			+ " ,8, ,6, ,4, ,5, \r\n"
     			+ "5, ,6, ,8, ,2, ,3");
     	
-    	SudokuData staticDataEmpty = sudokuDataFactory.empty();
+    	SudokuImmutableData staticDataEmpty = sudokuDataFactory.empty();
     	
     	// When
-    	SudokuData fromFile = sudokuFileRepository.loadFromFile("valid.txt");
+    	SudokuImmutableData fromFile = sudokuFileRepository.loadFromResourceFile("valid.txt");
 
     	// Then
     	assertEquals(staticData, fromFile);
@@ -45,19 +45,19 @@ public class SudokuFileRepositoryTest {
     @Test(expected = SudokuFileNotFoundException.class)
     public void fileNotFound() throws SudokuException
     {
-    	sudokuFileRepository.loadFromFile("not existing.txt");
+    	sudokuFileRepository.loadFromResourceFile("not existing.txt");
     }
 
-    @Test(expected = SudokuNotEnoughRowsException.class)
+    @Test(expected = SudokuNotExpectedRowCountException.class)
     public void notEnoughRows() throws SudokuException
     {
-    	sudokuFileRepository.loadFromFile("sevenRows.txt");
+    	sudokuFileRepository.loadFromResourceFile("sevenRows.txt");
     }
 
-    @Test(expected = SudokuNotEnoughColumnsException.class)
+    @Test(expected = SudokuNotExpectedColumnCountException.class)
     public void notEnoughColumns() throws SudokuException
     {
-    	sudokuFileRepository.loadFromFile("sevenColumns.txt");
+    	sudokuFileRepository.loadFromResourceFile("sevenColumns.txt");
     }
 
 }

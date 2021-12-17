@@ -1,25 +1,32 @@
 package com.test.sudoku.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Result {
 
-	private List<String> errors = new ArrayList<>();
+	private Set<String> errors = new HashSet<>();
+	
+	public void add(String errorMessage) {
+		errors.add(errorMessage);
+	}
 
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		return errors.isEmpty();
 	}
 
-	public boolean contains(String string) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Object errorCount() {
-		// TODO Auto-generated method stub
-		return null;
+	public int errorCount() {
+		return errors.size();
 	}
 	
+	public boolean contains(String message) {
+		return errors.stream().anyMatch(s -> s.contains(message));
+	}
+	
+	public String getMessages() {
+		StringBuilder stringBuilder = new StringBuilder();
+		errors.stream().forEach(s -> stringBuilder.append((stringBuilder.length() > 0 ? "\n" : "") + s));
+		return stringBuilder.toString();
+	}
+
 }

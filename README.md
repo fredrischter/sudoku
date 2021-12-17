@@ -29,12 +29,14 @@ File should be in the following format:
 
 ## File structure errors.
 
-P01 - File not found.
-P02 - Not enough rows. X rows found.
-P03 - Row doesn't contain expected amount of columns. X columns found on the row Y.
+P01 - Missing parameter - file.
+P02 - File not found.
+P03 - Doesn't contain the expected rows count. X rows found.
+P04 - Row doesn't contain the expected columns count. X columns found on the row Y.
+P05 - Unwnown error.
 
 ## Logical structure errors.
 
 L01 - Invalid row, having repeated number. Row X, repeated number Y.
-L02 - Invalid column, having repeated number. Columns X, repeated number Y.
+L02 - Invalid column, having repeated number. Column X, repeated number Y.
 L03 - Invalid box, having repeated number. Box X,Y, repeated number X.
